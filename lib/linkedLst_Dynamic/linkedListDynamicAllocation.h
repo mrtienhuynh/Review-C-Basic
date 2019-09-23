@@ -24,8 +24,10 @@ typedef enum returnDelLstType{
     NULL_LINKED_LST,
     ERROR_OUT_RANGE_INDEX,
     ERROR_OTHER,
+    NOT_FOUND_IN_LST,
     SUCCESSFUL
-} Enum_returnDelLstType
+} Enum_returnDelLstType;
+
 /******GLOBAL VARIABLE******/
 
 
@@ -53,20 +55,50 @@ linkedLst_t* appendElement2LinkedLst (linkedLst_t* linkedLst, void* data);
 * @ para: linkedLst_t* linkedLst
 * @ return: none
 */
-void releaseElementOfLinkedLst (linkedLst_t* linkedLst);
+void releaseElementOfLinkedLst (linkedLst_t** linkedLst);
 
 /*@Brief: release all element of linked list
 * @ para: linkedLst_t* linkedLst
 * @ return: none
 */
-void releaseAllElementOfLinkedLst (linkedLst_t* linkedLst);
+void releaseAllElementOfLinkedLst (linkedLst_t** linkedLst);
 
 /*@Brief: delete element from linked list using index
 * @ para: linkedLst_t* linkedLst
 * @ para: int index
 * @ return: Enum_returnDelLstType
 */
-Enum_returnDelLstType deleteElementfromLinkedLstUsingIndex (linkedLst_t* linkedLst, int index);
+Enum_returnDelLstType deleteElementfromLinkedLstUsingIndex (linkedLst_t** linkedLst, int index);
 
+/*@Brief: delete element from linked list using compare data
+* @ para: linkedLst_t* linkedLst
+* @ para: int index
+* @para:  bool (*callBackFunction)(void *, void* )
+*           true: remove the first element have equal data.
+            false: donot thing
+* @ return: Enum_returnDelLstType
+*/
+Enum_returnDelLstType deleteElementfromLinkedLst (linkedLst_t* linkedLst, void* data, bool (*callBackFunction)(void *, void* ));
+
+/*@Brief: get all number of element that linked list contain
+* @ para: linkedLst_t* linkedLst
+* @ return: size of list
+*/
+int getSizeOfLinkedLst (linkedLst_t* linkedLst);
+
+/*@Brief: swap element of linked list
+* @ para: linkedLst_t* linkedLst
+* @ para: int x
+* @ para: int y
+* @ return: none
+*/
+void swapElementOfLinkedLst (linkedLst_t** linkedLst, int x, int y);
+
+/*@Brief: get element of linked list
+* @ para: linkedLst_t* linkedLst
+* @ para: int index
+* @ return: none
+*/
+linkedLst_t* getElementOfLinkedLstUsingIndex (linkedLst_t* linkedLst, int index);
 
 #endif
